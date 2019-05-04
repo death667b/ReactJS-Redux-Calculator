@@ -1,18 +1,21 @@
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const port = process.env.PORT || 3000;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     vendor: [ 'semantic-ui-react' ],
     app: './src/index.js'
   },
   output: {
-    filename: '[name].[hash].js'
+    // We want to create the JS bundles under a 'static' directory
+    filename: 'static/[name].[hash].js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -22,19 +25,21 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [{
             loader: 'css-loader',
             options: {
               modules: true,
+              importLoaders: 1,
               camelCase: true,
               sourceMap: true
             }
-          }
-        ]
+          },
+          {
+            loader: 'postcss-loader',
+          }]
+        })
       }
     ]
   },
@@ -54,13 +59,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       favicon: 'public/favicon.ico'
+    }),
+    new ExtractTextPlugin({
+      filename: 'styles/style.[hash].css',
+      allChunks: true
     })
-  ],
-  devServer: {
-    host: 'localhost',
-    port: port,
-    historyApiFallback: true,
-    open: true,
-    hot: true
-  }
+  ]
 };

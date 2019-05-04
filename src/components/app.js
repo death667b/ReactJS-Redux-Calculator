@@ -1,8 +1,22 @@
-import React, { Component } from 'react';
-class App extends Component {
-  render() {
-    return (<h1>nar</h1>)
-  }
+import React from 'react';
+import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+
+import Home from './Home';
+import DynamicPage from './DynamicPage';
+import NoMatch from './NoMatch';
+
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exaxt path='/dynamic' component={DynamicPage} />
+          <Route component={NoMatch} />
+        </Switch>
+      </div>
+    </Router>
+  )
 }
 
 export default App;

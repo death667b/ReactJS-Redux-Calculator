@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --env.env=dev",
+    "dev:bundleanalyzer": "npm run dev --env.addons=bundleanalyzer",
     "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack -p --env.env=prod"
+    "build": "cross-env NODE_ENV=production webpack -p --env.env=prod",
+    "build:bundleanalyzer": "npm run build --env.addons=bundleanalyzer"
   },
   "repository": {
     "type": "git",
@@ -46,6 +48,7 @@
     "rimraf": "^2.6.3",
     "style-loader": "^0.23.1",
     "webpack": "^4.30.0",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.1",
     "webpack-dev-server": "^3.3.1",
     "webpack-merge": "^4.2.1"

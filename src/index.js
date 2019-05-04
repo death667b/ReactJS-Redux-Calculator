@@ -1,11 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
-import App from './components/app';
-import 'semantic-ui-css/semantic.min.css'
+import ReactDom from 'react-dom';
+import App from './components/App';
 
-const rootEl = document.getElementById('app');
+const rootEl = document.getElementById('root');
 
-render(<App />, rootEl);
+ReactDom.render(<App />, rootEl);
 
 if (module.hot) {
   module.hot.accept();

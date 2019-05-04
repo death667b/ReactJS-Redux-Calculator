@@ -1,5 +1,5 @@
 const path = require("path");
-const HtmlWebPackPlugin = require("html-webpack=plugin");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
@@ -41,8 +41,8 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       hash: true,
-      filename: 'index.html', // target html
-      template: './src/public/index.html' // source html
+      filename: './index.html', // target html
+      template: './src/index.html' // source html
     }),
     new ExtractTextPlugin({ filename: 'css/style.css' })
   ]

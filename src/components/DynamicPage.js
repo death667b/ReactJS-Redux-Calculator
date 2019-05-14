@@ -1,28 +1,39 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Header } from 'semantic-ui-react';
 import uuidv1 from 'uuid';
 
 import Layout from './Layout';
 import { addArticle } from '../store/actions';
+import { errorInput, normalInput } from './DynamicPage.css';
 
-const mapDispatchToProps = dispatch => {
-  return { addArticle: article => dispatch(addArticle(article)) }
-}
+// const mapDispatchToProps = dispatch => {
+//   return { addArticle: article => dispatch(addArticle(article)) }
+// }
 
-const ConnectedDynamicPage = ({addArticle}) => {
-  const [eventTarget, setEventTarget] = useState({});
+const mapStateToProps = state => {
+  return { 
+    foundBadWord: state.foundBadWord, 
+    oldTitle: state.oldTitle
+  };
+};
+
+const DynamicPage = ({foundBadWord, oldTitle, addArticle}) => {
+  const [title, setTitle] = useState(oldTitle);
 
   const handleChange = event => {
-    setEventTarget(events => Object.assign(events, {[event.target.id]: event.target.value}));
+    const updated = event.target.value
+    setTitle(updated)
   }
 
   const handleSubmit = event => {
     event.preventDefault();
     const id = uuidv1();
-    const title = eventTarget.title;
     addArticle({title, id});
+    setTitle('');
   }
+
+  const styleType = (foundBadWord) ? errorInput : normalInput
 
   return (
     <Layout>
@@ -32,9 +43,9 @@ const ConnectedDynamicPage = ({addArticle}) => {
           <label htmlFor='title'>Title</label>
           <input
             type='text'
-            className='form-control'
+            className={styleType}
             id='title'
-            value={eventTarget.title}
+            value={title || oldTitle}
             onChange={handleChange}
           />
         </div>
@@ -46,5 +57,4 @@ const ConnectedDynamicPage = ({addArticle}) => {
   );
 };
 
-const DynamicPage = connect(null, mapDispatchToProps)(ConnectedDynamicPage);
-export default DynamicPage;
+export default connect(mapStateToProps, { addArticle })(DynamicPage);

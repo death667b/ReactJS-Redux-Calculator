@@ -1,6 +1,4 @@
 import { 
-  ADD_ARTICLE, 
-  FOUND_BAD_WORD, 
   VALUE_KEY_PRESSED,
   PROCESS_VALUE_KEY,
   STOPPED_DECIMAL,
@@ -13,28 +11,7 @@ import {
   DIVIDE_OPERATOR_KEY_PRESSED,
   PLUS_MINUS_OPERATOR_KEY_PRESSED,
   SQUARED_OPERATOR_KEY_PRESSED,
-  PROCESS_PLUS_OPERATOR_KEY_PRESSED,
-  PROCESS_MINUS_OPERATOR_KEY_PRESSED,
-  PROCESS_MULTIPLY_OPERATOR_KEY_PRESSED,
-  PROCESS_DIVIDE_OPERATOR_KEY_PRESSED,
-  PROCESS_PLUS_MINUS_OPERATOR_KEY_PRESSED,
-  PROCESS_SQUARED_OPERATOR_KEY_PRESSED,
   PROCESS_OPERATOR_KEY_PRESSED } from '../constants/action-types';
-
-const forbiddenWords = ['spam', 'money'];
-export const forbiddenWordsMiddleware = ({ dispatch }) => {
-  return next => {
-    return action => {
-      if (ADD_ARTICLE === action.type) {
-        const foundWord = forbiddenWords.filter(word => action.payload.title.includes(word));
-
-        if (foundWord.length) return dispatch( {type: FOUND_BAD_WORD, payload: action.payload });
-      }
-
-      return next(action);
-    };
-  };
-};
 
 export const processValueKey = ({ getState, dispatch }) => next => action => {
   if (VALUE_KEY_PRESSED === action.type) {

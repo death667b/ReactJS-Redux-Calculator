@@ -1,9 +1,4 @@
 import { 
-  ADD_ARTICLE, 
-  FOUND_BAD_WORD,
-  DATA_LOADED,
-  API_ERRORED,
-  // Calculator
   PRESSED_CLEAR,
   PRESSED_ALL_CLEAR,
   PROCESS_VALUE_KEY,
@@ -13,12 +8,6 @@ import {
 
 const emptyResultsArray = ['', '', '', '', ''];
 const initialState = {
-  articles: [],
-  foundBadWord: false,
-  oldTitle: '',
-  remoteArticles: [],
-  API_Error: '',
-  // Calculator
   operator: '',
   currentValue: '0',
   lastValue: '',
@@ -68,40 +57,6 @@ const rootReducer = (state = initialState, action) =>{
       operator: '+',
       lastValue: action.payload,
       currentValue: '0'
-    })
-  }
-
-  
-
-  // Demo Stuff
-  if (ADD_ARTICLE === action.type) {
-    console.log('[REDUX] Added article: ', action.payload);
-    return Object.assign({}, state, {
-      articles: state.articles.concat(action.payload),
-      foundBadWord: false,
-      oldTitle: ''
-    });
-  }
-
-  if (FOUND_BAD_WORD === action.type) {
-    console.log('[REDUX] Found bad word: ', action.payload);
-    return Object.assign({}, state, {
-      foundBadWord: true,
-      oldTitle: action.payload.title
-    })
-  }
-
-  if (DATA_LOADED === action.type) {
-    console.log('[REDUX] Added remote article: ', action.payload);
-    return Object.assign({}, state, {
-      remoteArticles: state.remoteArticles.concat(action.payload)
-    });
-  }
-
-  if (API_ERRORED === action.type) {
-    console.log('[REDUX] API Error reported: ', action.payload);
-    return Object.assign({}, state, {
-      API_Error: action.payload
     })
   }
 

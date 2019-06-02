@@ -1,6 +1,4 @@
 import { 
-  ADD_ARTICLE, 
-  DATA_REQUESTED, 
   PRESSED_CLEAR,
   PRESSED_ALL_CLEAR,
   VALUE_KEY_PRESSED,
@@ -12,16 +10,6 @@ import {
   PLUS_MINUS_OPERATOR_KEY_PRESSED,
   SQUARED_OPERATOR_KEY_PRESSED
 } from '../constants/action-types';
-
-export function addArticle(payload) {
-  return { type: ADD_ARTICLE, payload };
-}
-
-export function getData() {
-  return { type: DATA_REQUESTED };
-}
-
-//  Calculator
 
 export function clearEnterBox() {
   return { type: PRESSED_CLEAR }

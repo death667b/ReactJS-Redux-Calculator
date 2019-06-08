@@ -1,5 +1,5 @@
 {
-  "name": "cab402-calculator",
+  "name": "ReactJS with Redux Calculator",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,15 +11,15 @@
     "build:bundleanalyzer": "npm run build --env.addons=bundleanalyzer"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/death667b/CAB402-Calculator.git"
+    "type": "git",   
+    "url": "git+https://github.com/death667b/ReactJS-Redux-Calculator.git"
   },
   "author": "Ian Daniel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/death667b/CAB402-Calculator/issues"
+    "url": "https://github.com/death667b/ReactJS-Redux-Calculator/issues"
   },
-  "homepage": "https://github.com/death667b/CAB402-Calculator#readme",
+  "homepage": "https://github.com/death667b/ReactJS-Redux-Calculator#readme",
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "prop-types": "^15.7.2",

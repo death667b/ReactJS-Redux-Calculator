@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <Container>
       <Link to='/'>
         <Header as='h1' className={h1}>
-          CAB402 - Assignment 2
+          Calculator with ReactJS and Redux
         </Header>
       </Link>
       {children}
